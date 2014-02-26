@@ -1,18 +1,16 @@
 # ErbParser
 
-ErbParser is a Ruby gem for parsing ERB templates. It takes an ERB template as a `String`
+ErbParser is a Ruby gem for parsing ERB templates. It takes an ERB template as a string
 and returns either an array of tokens or a transformed XML document, depending on your
 preference.
 
 ## Basic usage synopsis
 
-Pass in an ERB template as a `String`:
+Pass in an ERB template as a string:
 
     result = ErbParser.parse(
       'Plain text <% 5.times {} %><%= 2 + 3 %><%# Comment %>
     )
-    
-    # result is an array of tokens.
     
     # 'Plain text'
     puts result[0]
