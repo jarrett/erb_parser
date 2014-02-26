@@ -1,0 +1,47 @@
+module ErbParser
+  grammar ErbGrammar
+    rule document
+      (erb_tag / text)*
+    end
+    
+    rule text
+      (!'<%' .)+
+      <Text>
+    end
+    
+    rule erb_tag
+      '<%'
+      number_sign:'#'? equal_sign:'='?
+      _ruby_code:ruby_code
+      '%>'
+      <ErbTag>
+    end
+    
+    rule ruby_code
+      (string_literal / (!'%>' .))*
+    end
+
+    # Matches the following quote styles:
+    # "string"
+    # 'string'
+    # %q(string (string) string)
+    # %Q(string (string) string)
+    # %(string (string) string)
+    # %q{string {string} string}
+    # %Q{string {string} string}
+    # %{string {string} string}
+    rule string_literal
+      ('"' ('\"' / !'"' .)* '"') /
+      ('\'' ('\\\'' / !'\'' .)* '\'') /
+      ('%' ('q' / 'Q')? (curly_brackets / parens))
+    end
+    
+    rule curly_brackets
+      '{' (curly_brackets / '\}' / !'}' .)* '}'
+    end
+    
+    rule parens
+      '(' (parens         / '\)' / !')' .)* ')'
+    end
+  end
+end
