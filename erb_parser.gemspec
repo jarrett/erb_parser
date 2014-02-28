@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name         = 'erb_parser'
-  s.version      = '0.0.0'
-  s.date         = '2014-02-26'
+  s.version      = '0.0.1'
+  s.date         = '2014-02-28'
   s.summary      = 'Parser for ERB templates'
   s.description  = 'Parses ERB templates into two types of tokens: Plain text and ERB tags. Special support for HTML/XML.'
   s.authors      = ['Jarrett Colby']
