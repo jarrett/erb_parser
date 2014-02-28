@@ -6,8 +6,21 @@ require 'erb_parser/erb_tag'
 require 'erb_parser/xml_transformer'
 
 module ErbParser
-  def self.parse(str)
-    ParsedErb.new TreetopRunner.run(str)
+  def self.parse(str, options = {})
+    result = ParsedErb.new TreetopRunner.run(str)
+    
+    if options[:transform]
+      result.tokens.map do |elem|
+        case elem
+        when String
+          elem
+        when ErbTag
+          options[:transform].call(elem)
+        end
+      end.join
+    else
+      result
+    end
   end
   
   # Takes a string representing an XML document or fragment. Finds every ERB tag in the

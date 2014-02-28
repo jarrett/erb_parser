@@ -35,6 +35,23 @@ Pass in an ERB template as a string:
 
 The above usage sets `result` to an array of tokens.
 
+## The `:transform` option
+
+Often, you'll want to parse an ERB template, apply some transformation function to all
+the ERB tags, and get back a new string. That's what the `:transform` option is for:
+
+    result = ErbParser.parse(
+      'This is a<% TSET %>',
+      :transform => lambda { |t| t.ruby_code.reverse.downcase }
+    )
+    
+    # 'This is a test '
+    puts result
+
+As in the above example, the `:transform` option must be a proc. The proc will be passed
+an `ErbTag` as its only parameter. It must return a string. The returned string will be
+inserted into the output where the ERB tag used to be.
+
 ## XML/HTML usage synopsis
 
 Alternatively, you may pass in an XML/HTML document or fragment and have the ERB tags

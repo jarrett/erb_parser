@@ -54,4 +54,10 @@ class ApiTest < MiniTest::Unit::TestCase
     assert !result[9].interpolated?
     assert result[9].comment?
   end
+  
+  def test_transform_option
+    str = 'foo<% bar %>baz'
+    result = ErbParser.parse str, :transform => lambda { |tag| tag.ruby_code.upcase.reverse }
+    assert_equal 'foo RAB baz', result
+  end
 end
