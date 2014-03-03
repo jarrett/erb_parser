@@ -9,13 +9,13 @@ module ErbParser
   def self.parse(str, options = {})
     result = ParsedErb.new TreetopRunner.run(str)
     
-    if options[:transform]
+    if options[:transform] or options[:map]
       result.tokens.map do |elem|
         case elem
         when String
           elem
         when ErbTag
-          options[:transform].call(elem)
+          (options[:transform] || options[:map]).call(elem)
         end
       end.join
     else

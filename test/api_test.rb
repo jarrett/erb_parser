@@ -57,6 +57,8 @@ class ApiTest < MiniTest::Unit::TestCase
   
   def test_transform_option
     str = 'foo<% bar %>baz'
+    result = ErbParser.parse str, :map => lambda { |tag| tag.ruby_code.upcase.reverse }
+    assert_equal 'foo RAB baz', result
     result = ErbParser.parse str, :transform => lambda { |tag| tag.ruby_code.upcase.reverse }
     assert_equal 'foo RAB baz', result
   end
