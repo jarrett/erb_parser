@@ -7,10 +7,11 @@ Gem::Specification.new do |s|
   s.authors      = ['Jarrett Colby']
   s.email        = 'jarrett@madebyhq.com'
   s.files        = Dir.glob('lib/**/*')
-  s.homepage     = 'http://madebyhq.com/'
+  s.homepage     = 'http://github.com/jarrett'
   
   s.add_runtime_dependency 'treetop'
   
-  s.add_development_dependency 'minitest'
-  s.add_development_dependency 'turn'
+  s.add_development_dependency 'minitest', '~> 5'
+  s.add_development_dependency 'minitest-reporters', '~> 1'
+  s.add_development_dependency 'rake'
 end

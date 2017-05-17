@@ -9,6 +9,7 @@ module ErbParser
   def self.parse(str, options = {})
     result = ParsedErb.new TreetopRunner.run(str)
     
+    # :transform is deprecated in favor of :map.
     if options[:transform] or options[:map]
       result.tokens.map do |elem|
         case elem

@@ -1,0 +1,34 @@
+PATH
+  remote: .
+  specs:
+    erb_parser (0.0.2)
+      treetop
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.5.0)
+    builder (3.2.3)
+    minitest (5.10.2)
+    minitest-reporters (1.1.14)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    polyglot (0.3.5)
+    rake (12.0.0)
+    ruby-progressbar (1.8.1)
+    treetop (1.6.8)
+      polyglot (~> 0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  erb_parser!
+  minitest (~> 5)
+  minitest-reporters (~> 1)
+  rake
+
+BUNDLED WITH
+   1.13.6
